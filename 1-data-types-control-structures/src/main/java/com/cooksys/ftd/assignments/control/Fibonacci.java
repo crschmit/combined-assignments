@@ -13,8 +13,21 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * ...etc
  */
 public class Fibonacci {
-
-    /**
+	private static int nextFib(int a, int b) {
+		return a + b;
+	}
+	
+	private static int[] nFibs(int n) {
+		int[] fibs = new int[n];
+		if (n >= 1) fibs[0] = 1;
+		if (n >= 2) fibs[1] = 1;
+		for (int i = 2; i < n; i++) {
+			fibs[i] = nextFib(fibs[i-1], fibs[i-2]);
+		}
+		return fibs;
+	}
+	
+	/**
      * Calculates the value in the Fibonacci sequence at a given index. For example,
      * `atIndex(0)` and `atIndex(1)` should return `1`, because the first two elements of the
      * sequence are both `1`.
@@ -23,8 +36,11 @@ public class Fibonacci {
      * @return the calculated element
      * @throws IllegalArgumentException if the given index is less than zero
      */
+
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	int[] fibs = nFibs(i+1);
+    	return fibs[i];
     }
 
     /**

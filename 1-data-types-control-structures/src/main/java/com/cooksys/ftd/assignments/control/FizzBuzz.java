@@ -1,6 +1,7 @@
 package com.cooksys.ftd.assignments.control;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.Arrays;
 
 /**
  * FizzBuzz is an old programming exercise.
@@ -26,7 +27,12 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	if (b == 0) {
+    		throw new IllegalArgumentException();
+    	} else {
+    		return (a % b) == 0;
+    	}
     }
 
     /**
@@ -41,7 +47,22 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	Boolean div = false;
+    	String mssg = n + ": ";
+    	if (divides(n,3)) {
+    		div = true;
+    		mssg += "Fizz";
+    	}
+    	if (divides(n,5)) {
+    		div = true;
+    		mssg += "Buzz";
+    	}
+    	if (div) {
+    		return mssg;
+    	} else {
+    		return null;
+    	}
     }
 
     /**
@@ -55,7 +76,16 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	if (end < start) throw new IllegalArgumentException();
+    	int n = end - start;
+    	int d = 0;
+    	String[] mssgs = new String[n];
+    	for (int i = start; i < end; i++) {
+    		String mssg = message(i);
+    		if (mssg != null) mssgs[d++] = mssg;
+    	}
+    	return Arrays.copyOf(mssgs, d);
     }
 
     /**
@@ -63,7 +93,12 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	int start = 1, end = 115;
+    	String[] mssgs = messages(start,end);
+    	for (String mssg : mssgs) {
+    		System.out.println(mssg);
+    	}
     }
 
 }

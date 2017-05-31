@@ -36,7 +36,7 @@ interface IRational {
      * @return the negation of this
      */
     default IRational negate() {
-        throw new NotImplementedException();
+        return this.construct(-1 * this.getNumerator(), this.getDenominator());
     }
 
     /**
@@ -49,7 +49,8 @@ interface IRational {
      * @throws IllegalStateException if the numerator of this rational value is 0
      */
     default IRational invert() throws IllegalStateException {
-        throw new NotImplementedException();
+    	if (this.getNumerator() == 0) throw new IllegalStateException();
+        return this.construct(this.getDenominator(), this.getNumerator());
     }
 
     /**
@@ -63,7 +64,9 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational add(IRational that) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (that == null) throw new IllegalArgumentException();
+    	return this.construct((this.getNumerator() * that.getDenominator()) + (that.getNumerator() * this.getDenominator()),
+        					   this.getDenominator() * that.getDenominator());
     }
 
     /**
@@ -77,7 +80,9 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational sub(IRational that) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (that == null) throw new IllegalArgumentException();
+    	return this.construct((this.getNumerator() * that.getDenominator()) - (that.getNumerator() * this.getDenominator()),
+				   this.getDenominator() * that.getDenominator());
     }
 
     /**
@@ -91,7 +96,8 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational mul(IRational that) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (that == null) throw new IllegalArgumentException();
+    	return this.construct(this.getNumerator() * that.getNumerator(), this.getDenominator() * that.getDenominator());
     }
 
     /**
@@ -105,6 +111,7 @@ interface IRational {
      * @throws IllegalArgumentException if that is null or if the numerator of that is 0
      */
     default IRational div(IRational that) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (that == null) throw new IllegalArgumentException();
+    	return this.construct(this.getNumerator() * that.getDenominator(), this.getDenominator() * that.getNumerator());
     }
 }

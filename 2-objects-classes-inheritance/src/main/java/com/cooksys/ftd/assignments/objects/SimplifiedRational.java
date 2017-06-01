@@ -12,7 +12,16 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if a <= 0 or b < 0
      */
     public static int gcd(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (a <= 0 || b < 0) throw new IllegalArgumentException();
+        int x = (a < b ? a : b);
+        int y = (a < b ? b : a);
+        
+        while (x > 0) {
+        	int d = y - x;
+        	x = (x <= d ? x : d);
+            y = (x <= d ? d : x);
+        }
+        return y; //this is lcd, not gcd
     }
 
     /**
@@ -29,7 +38,8 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     public static int[] simplify(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	throw new NotImplementedException();
+    	//if (denominator == 0) throw new IllegalArgumentException();
     }
 
     /**

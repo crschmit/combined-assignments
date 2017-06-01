@@ -23,7 +23,7 @@ public class FatCat implements Capitalist {
      */
     @Override
     public String getName() {
-        throw new NotImplementedException();
+    	return this.name;
     }
 
     /**
@@ -31,7 +31,7 @@ public class FatCat implements Capitalist {
      */
     @Override
     public int getSalary() {
-        throw new NotImplementedException();
+    	return this.salary;
     }
 
     /**

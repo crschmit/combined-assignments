@@ -7,6 +7,14 @@ public class FatCat implements Capitalist {
 	private int salary;
 	private FatCat owner;
 	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof FatCat
+				&& this.getName() == ((FatCat) obj).getName()
+				&& this.getSalary() == ((FatCat) obj).getSalary()
+				&& this.getParent() == ((FatCat) obj).getParent();
+	}
+	
     public FatCat(String name, int salary) {
     	this.name = name;
     	this.salary = salary;

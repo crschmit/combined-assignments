@@ -6,6 +6,15 @@ public class WageSlave implements Capitalist {
 	private String name;
 	private int salary;
 	private FatCat owner;
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof WageSlave
+				&& this.getName() == ((WageSlave) obj).getName()
+				&& this.getSalary() == ((WageSlave) obj).getSalary()
+				&& this.getParent() == ((WageSlave) obj).getParent();
+	}
+
 	
     public WageSlave(String name, int salary) {
     	this.name = name;

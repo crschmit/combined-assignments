@@ -39,7 +39,7 @@ public class FatCat implements Capitalist {
      */
     @Override
     public boolean hasParent() {
-        throw new NotImplementedException();
+    	return this.owner != null;
     }
 
     /**
@@ -47,6 +47,6 @@ public class FatCat implements Capitalist {
      */
     @Override
     public FatCat getParent() {
-        throw new NotImplementedException();
+    	return this.owner;
     }
 }

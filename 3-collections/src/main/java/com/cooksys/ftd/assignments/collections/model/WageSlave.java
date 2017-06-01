@@ -23,7 +23,7 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public String getName() {
-        throw new NotImplementedException();
+    	return this.name;
     }
 
     /**
@@ -31,7 +31,7 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public int getSalary() {
-        throw new NotImplementedException();
+    	return this.salary;
     }
 
     /**
@@ -39,7 +39,7 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public boolean hasParent() {
-        throw new NotImplementedException();
+    	return this.owner != null;
     }
 
     /**
@@ -47,6 +47,6 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public FatCat getParent() {
-        throw new NotImplementedException();
+    	return this.owner;
     }
 }

@@ -153,7 +153,9 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
      */
     @Override
     public Map<FatCat, Set<Capitalist>> getHierarchy() {
-        return hierarchy;
+        HashMap<FatCat, Set<Capitalist>> h = new HashMap<FatCat, Set<Capitalist>>();
+        for (FatCat f : hierarchy.keySet()) h.put(f, getChildren(f));
+    	return h;
     }
 
     /**

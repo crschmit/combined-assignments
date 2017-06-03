@@ -5,11 +5,15 @@ import com.cooksys.ftd.assignments.collections.model.Capitalist;
 import com.cooksys.ftd.assignments.collections.model.FatCat;
 import com.cooksys.ftd.assignments.collections.model.WageSlave;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.*;
+//import java.util.*;
+import java.util.Set;
+import java.util.Map;
+import java.util.List;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 
@@ -166,6 +170,16 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
      */
     @Override
     public List<FatCat> getParentChain(Capitalist capitalist) {
-        throw new NotImplementedException();
+		ArrayList chain = new ArrayList<Capitalist>();
+    	if (capitalist != null && has(capitalist)) {
+    		//chain.add(capitalist);
+    		
+    		Capitalist c = capitalist;
+    		while (c.hasParent()) {
+    			c = c.getParent();
+    			chain.add(c);
+    		}
+    	}
+    	return chain;
     }
 }

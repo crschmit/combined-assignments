@@ -6,6 +6,7 @@ import com.cooksys.ftd.assignments.socket.model.Student;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -31,13 +32,15 @@ public class Utils {
      * @param jaxb the JAXBContext to use
      * @return a {@link Config} object that was read from the config.xml file
      * @throws JAXBException 
-     * @throws FileNotFoundException 
+     * @throws IOException 
      */
-    public static Config loadConfig(String configFilePath, JAXBContext jaxb) throws JAXBException, FileNotFoundException {
+    public static Config loadConfig(String configFilePath, JAXBContext jaxb) throws JAXBException, IOException {
     	File cx =  new File("config/config.xml");
 		FileInputStream cxin = new FileInputStream(cx);
 		//JAXBContext ctx = Utils.createJAXBContext();
 		Unmarshaller u = jaxb.createUnmarshaller();
-		return (Config) u.unmarshal(cxin);
+		Config c = (Config) u.unmarshal(cxin);
+		cxin.close();
+		return c;
     }
 }

@@ -64,13 +64,13 @@ public class Check {
 		}*/
 		
 		try {
-			sx =  new File("config/student.xml");
-			sxin = new FileInputStream(sx);
+			//sx =  new File("config/student.xml");
+			//sxin = new FileInputStream(sx);
 			//cx =  new File("config/config.xml");
 			//cxin = new FileInputStream(cx);
 			//ctx = JAXBContext.newInstance(Student.class, Config.class);
 			ctx = Utils.createJAXBContext();
-			Unmarshaller u = ctx.createUnmarshaller();
+			//Unmarshaller u = ctx.createUnmarshaller();
 			
 			//c = (Config) u.unmarshal(cxin);
 			c = Utils.loadConfig("config/config.xml", ctx);
@@ -82,13 +82,14 @@ public class Check {
 						   + "\t\tPort: " + c.getRemote().getPort() + "\n"
 						   + "\tStudent File Path: " + c.getStudentFilePath() + "\n");
 			
-			s = (Student) u.unmarshal(sxin);
+			//s = (Student) u.unmarshal(sxin);
+			s = Server.loadStudent("config/student.xml", ctx);
 			System.out.print("Student: " + s.getLastName() + ", " + s.getFirstName() + "\n"
 					+ "\tFavorite Language: " + s.getFavoriteLanguage() + "\n"
 					+ "\tFavorite Programming Paradigm: " + s.getFavoriteParadigm() + "\n"
 					+ "\tFavorite IDE: " + s.getFavoriteIDE() + "\n");
 
-			sxin.close();
+			//sxin.close();
 			//cxin.close();
 		} catch (Exception e) {
 			e.printStackTrace();

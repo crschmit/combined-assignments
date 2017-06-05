@@ -2,7 +2,14 @@ package com.cooksys.ftd.assignments.socket;
 
 import com.cooksys.ftd.assignments.socket.model.Student;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 public class Server extends Utils {
 
@@ -12,9 +19,16 @@ public class Server extends Utils {
      * @param studentFilePath the file path from which to read the student config file
      * @param jaxb the JAXB context to use during unmarshalling
      * @return a {@link Student} object unmarshalled from the given file path
+     * @throws JAXBException 
+     * @throws IOException 
      */
-    public static Student loadStudent(String studentFilePath, JAXBContext jaxb) {
-        return null; // TODO
+    public static Student loadStudent(String studentFilePath, JAXBContext jaxb) throws JAXBException, IOException {
+    	File sx =  new File(studentFilePath);
+		FileInputStream sxin = new FileInputStream(sx);
+		Unmarshaller u = jaxb.createUnmarshaller();
+		Student s = (Student) u.unmarshal(sxin);
+		sxin.close();
+		return s;
     }
 
     /**

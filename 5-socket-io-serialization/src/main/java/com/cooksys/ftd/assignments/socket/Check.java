@@ -66,12 +66,14 @@ public class Check {
 		try {
 			sx =  new File("config/student.xml");
 			sxin = new FileInputStream(sx);
-			cx =  new File("config/config.xml");
-			cxin = new FileInputStream(cx);
-			ctx = JAXBContext.newInstance(Student.class, Config.class);
+			//cx =  new File("config/config.xml");
+			//cxin = new FileInputStream(cx);
+			//ctx = JAXBContext.newInstance(Student.class, Config.class);
+			ctx = Utils.createJAXBContext();
 			Unmarshaller u = ctx.createUnmarshaller();
 			
-			c = (Config) u.unmarshal(cxin);
+			//c = (Config) u.unmarshal(cxin);
+			c = Utils.loadConfig("config/config.xml", ctx);
 			System.out.print("Config:\n"
 						   + "\tLocal Config:\n" 
 						   + "\t\tPort: " + c.getLocal().getPort() + "\n"
@@ -87,7 +89,7 @@ public class Check {
 					+ "\tFavorite IDE: " + s.getFavoriteIDE() + "\n");
 
 			sxin.close();
-			cxin.close();
+			//cxin.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

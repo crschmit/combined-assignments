@@ -42,7 +42,7 @@ public class Setup {
 		lc.setPort(8080);
 		
 		RemoteConfig rc = new RemoteConfig();
-		rc.setHost("10.1.1.26");
+		rc.setHost("0.0.0.0");
 		rc.setPort(8080);
 		
 		Config cfg = new Config();

@@ -35,9 +35,8 @@ public class Utils {
      * @throws IOException 
      */
     public static Config loadConfig(String configFilePath, JAXBContext jaxb) throws JAXBException, IOException {
-    	File cx =  new File("config/config.xml");
+    	File cx =  new File(configFilePath);
 		FileInputStream cxin = new FileInputStream(cx);
-		//JAXBContext ctx = Utils.createJAXBContext();
 		Unmarshaller u = jaxb.createUnmarshaller();
 		Config c = (Config) u.unmarshal(cxin);
 		cxin.close();

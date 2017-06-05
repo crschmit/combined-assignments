@@ -1,14 +1,20 @@
 package com.cooksys.ftd.assignments.socket;
 
+import com.cooksys.ftd.assignments.socket.model.Config;
 import com.cooksys.ftd.assignments.socket.model.Student;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 public class Server extends Utils {
@@ -44,6 +50,30 @@ public class Server extends Utils {
      * Following this transaction, the server may shut down or listen for more connections.
      */
     public static void main(String[] args) {
-        // TODO
+        System.out.println("Server");
+    	ServerSocket server;
+        Socket client;
+        JAXBContext ctx;
+        Config cfg;
+        OutputStream out;
+		try {
+			ctx = Utils.createJAXBContext();
+			cfg = Utils.loadConfig("config/config.xml", ctx);
+			server = new ServerSocket(cfg.getLocal().getPort());
+			System.out.println("Server listening ...");
+			client = server.accept();
+			out = client.getOutputStream();
+			Marshaller m = ctx.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			m.marshal(loadStudent(cfg.getStudentFilePath(), ctx), out);
+			server.close();
+			out.flush();
+			out.close();
+			System.out.println("Server closed");
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }
